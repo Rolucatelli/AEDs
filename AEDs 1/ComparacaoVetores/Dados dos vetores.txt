@@ -1,0 +1,308 @@
+Vetores:
+100:
+	 Operações realizadas pelo vetor na ordem crescente organizado por Bubble Sorting: 9900
+
+
+	 Operações realizadas pelo vetor na ordem aleatório organizado por Bubble Sorting: 19488
+
+
+	 Operações realizadas pelo vetor na ordem decrescente organizado por Bubble Sorting: 29700
+	 
+	 
+	 
+	 Operações realizadas pelo vetor na ordem crescente organizado por Selection Sorting: 9900
+
+
+	 Operações realizadas pelo vetor na ordem aleatório organizado por Selection Sorting: 10191
+
+
+	 Operações realizadas pelo vetor na ordem decrescente organizado por Selection Sorting: 10050
+	 
+
+	 Operações realizadas pelo vetor na ordem crescente organizado por Insertion Sorting: 198
+
+
+	 Operações realizadas pelo vetor na ordem aleatório organizado por Insertion Sorting: 5764
+
+
+	 Operações realizadas pelo vetor na ordem decrescente organizado por Insertion Sorting: 10098
+	 
+200:
+
+	 Operações realizadas pelo vetor na ordem crescente organizado por Bubble Sorting: 39800
+
+
+	 Operações realizadas pelo vetor na ordem aleatório organizado por Bubble Sorting: 78932
+
+
+	 Operações realizadas pelo vetor na ordem decrescente organizado por Bubble Sorting: 119400
+	 
+	 
+
+	 Operações realizadas pelo vetor na ordem crescente organizado por Selection Sorting: 39800
+
+
+	 Operações realizadas pelo vetor na ordem aleatório organizado por Selection Sorting: 40388
+
+
+	 Operações realizadas pelo vetor na ordem decrescente organizado por Selection Sorting: 40100
+	 
+
+
+	 Operações realizadas pelo vetor na ordem crescente organizado por Insertion Sorting: 398
+
+
+	 Operações realizadas pelo vetor na ordem aleatório organizado por Insertion Sorting: 19564
+
+
+	 Operações realizadas pelo vetor na ordem decrescente organizado por Insertion Sorting: 40198
+	 
+	 
+300:
+
+
+	 Operações realizadas pelo vetor na ordem crescente organizado por Bubble Sorting: 89700
+
+
+	 Operações realizadas pelo vetor na ordem aleatório organizado por Bubble Sorting: 180448
+
+
+	 Operações realizadas pelo vetor na ordem decrescente organizado por Bubble Sorting: 269100
+	 
+	 
+
+	 Operações realizadas pelo vetor na ordem crescente organizado por Selection Sorting: 89700
+
+
+	 Operações realizadas pelo vetor na ordem aleatório organizado por Selection Sorting: 90576
+
+
+	 Operações realizadas pelo vetor na ordem decrescente organizado por Selection Sorting: 90150
+	 
+	 
+
+	 Operações realizadas pelo vetor na ordem crescente organizado por Insertion Sorting: 598
+
+
+	 Operações realizadas pelo vetor na ordem aleatório organizado por Insertion Sorting: 46524
+
+
+	 Operações realizadas pelo vetor na ordem decrescente organizado por Insertion Sorting: 90298
+	 
+400: 
+
+
+	 Operações realizadas pelo vetor na ordem crescente organizado por Bubble Sorting: 159600
+
+
+	 Operações realizadas pelo vetor na ordem aleatório organizado por Bubble Sorting: 323076
+
+
+	 Operações realizadas pelo vetor na ordem decrescente organizado por Bubble Sorting: 478800
+	 
+	 
+
+	 Operações realizadas pelo vetor na ordem crescente organizado por Selection Sorting: 159600
+
+
+	 Operações realizadas pelo vetor na ordem aleatório organizado por Selection Sorting: 160782
+
+
+	 Operações realizadas pelo vetor na ordem decrescente organizado por Selection Sorting: 160200
+	 
+	 
+
+	 Operações realizadas pelo vetor na ordem crescente organizado por Insertion Sorting: 798
+
+
+	 Operações realizadas pelo vetor na ordem aleatório organizado por Insertion Sorting: 78956
+
+
+	 Operações realizadas pelo vetor na ordem decrescente organizado por Insertion Sorting: 160398
+	 
+	 
+500:
+
+
+	 Operações realizadas pelo vetor na ordem crescente organizado por Bubble Sorting: 249500
+
+
+	 Operações realizadas pelo vetor na ordem aleatório organizado por Bubble Sorting: 497468
+
+
+	 Operações realizadas pelo vetor na ordem decrescente organizado por Bubble Sorting: 748500
+	 
+	 
+
+	 Operações realizadas pelo vetor na ordem crescente organizado por Selection Sorting: 249500
+
+
+	 Operações realizadas pelo vetor na ordem aleatório organizado por Selection Sorting: 250970
+
+
+	 Operações realizadas pelo vetor na ordem decrescente organizado por Selection Sorting: 250250
+	 
+	 
+
+	 Operações realizadas pelo vetor na ordem crescente organizado por Insertion Sorting: 998
+
+
+	 Operações realizadas pelo vetor na ordem aleatório organizado por Insertion Sorting: 127794
+
+
+	 Operações realizadas pelo vetor na ordem decrescente organizado por Insertion Sorting: 250498
+	 
+600: 
+
+
+	 Operações realizadas pelo vetor na ordem crescente organizado por Bubble Sorting: 359400
+
+
+	 Operações realizadas pelo vetor na ordem aleatório organizado por Bubble Sorting: 717792
+
+
+	 Operações realizadas pelo vetor na ordem decrescente organizado por Bubble Sorting: 1078200
+	 
+	 
+
+	 Operações realizadas pelo vetor na ordem crescente organizado por Selection Sorting: 359400
+
+
+	 Operações realizadas pelo vetor na ordem aleatório organizado por Selection Sorting: 361182
+
+
+	 Operações realizadas pelo vetor na ordem decrescente organizado por Selection Sorting: 360300
+	 
+	 
+
+	 Operações realizadas pelo vetor na ordem crescente organizado por Insertion Sorting: 1198
+
+
+	 Operações realizadas pelo vetor na ordem aleatório organizado por Insertion Sorting: 182348
+
+
+	 Operações realizadas pelo vetor na ordem decrescente organizado por Insertion Sorting: 360598
+	 
+700:
+
+
+	 Operações realizadas pelo vetor na ordem crescente organizado por Bubble Sorting: 489300
+
+
+	 Operações realizadas pelo vetor na ordem aleatório organizado por Bubble Sorting: 984608
+
+
+	 Operações realizadas pelo vetor na ordem decrescente organizado por Bubble Sorting: 1467900
+	 
+	 
+
+	 Operações realizadas pelo vetor na ordem crescente organizado por Selection Sorting: 489300
+
+
+	 Operações realizadas pelo vetor na ordem aleatório organizado por Selection Sorting: 491382
+
+
+	 Operações realizadas pelo vetor na ordem decrescente organizado por Selection Sorting: 490350
+	 
+	 
+
+	 Operações realizadas pelo vetor na ordem crescente organizado por Insertion Sorting: 1398
+
+
+	 Operações realizadas pelo vetor na ordem aleatório organizado por Insertion Sorting: 253886
+
+
+	 Operações realizadas pelo vetor na ordem decrescente organizado por Insertion Sorting: 490698
+	 
+800:
+
+
+	 Operações realizadas pelo vetor na ordem crescente organizado por Bubble Sorting: 639200
+
+
+	 Operações realizadas pelo vetor na ordem aleatório organizado por Bubble Sorting: 1289588
+
+
+	 Operações realizadas pelo vetor na ordem decrescente organizado por Bubble Sorting: 1917600
+	 
+	 
+
+	 Operações realizadas pelo vetor na ordem crescente organizado por Selection Sorting: 639200
+
+
+	 Operações realizadas pelo vetor na ordem aleatório organizado por Selection Sorting: 641579
+
+
+	 Operações realizadas pelo vetor na ordem decrescente organizado por Selection Sorting: 640400
+	 
+	 
+
+	 Operações realizadas pelo vetor na ordem crescente organizado por Insertion Sorting: 1598
+
+
+	 Operações realizadas pelo vetor na ordem aleatório organizado por Insertion Sorting: 329930
+
+
+	 Operações realizadas pelo vetor na ordem decrescente organizado por Insertion Sorting: 640798
+	 
+900:
+
+
+	 Operações realizadas pelo vetor na ordem crescente organizado por Bubble Sorting: 809100
+
+
+	 Operações realizadas pelo vetor na ordem aleatório organizado por Bubble Sorting: 1616416
+
+
+	 Operações realizadas pelo vetor na ordem decrescente organizado por Bubble Sorting: 2427300
+	 
+	 
+
+	 Operações realizadas pelo vetor na ordem crescente organizado por Selection Sorting: 809100
+
+
+	 Operações realizadas pelo vetor na ordem aleatório organizado por Selection Sorting: 811773
+
+
+	 Operações realizadas pelo vetor na ordem decrescente organizado por Selection Sorting: 810450
+	 
+	 
+
+	 Operações realizadas pelo vetor na ordem crescente organizado por Insertion Sorting: 1798
+
+
+	 Operações realizadas pelo vetor na ordem aleatório organizado por Insertion Sorting: 414850
+
+
+	 Operações realizadas pelo vetor na ordem decrescente organizado por Insertion Sorting: 810898
+	 
+1000:
+
+
+	 Operações realizadas pelo vetor na ordem crescente organizado por Bubble Sorting: 999000
+
+
+	 Operações realizadas pelo vetor na ordem aleatório organizado por Bubble Sorting: 1996492
+
+
+	 Operações realizadas pelo vetor na ordem decrescente organizado por Bubble Sorting: 2997000
+	 
+	 
+
+	 Operações realizadas pelo vetor na ordem crescente organizado por Selection Sorting: 999000
+
+
+	 Operações realizadas pelo vetor na ordem aleatório organizado por Selection Sorting: 1001976
+
+
+	 Operações realizadas pelo vetor na ordem decrescente organizado por Selection Sorting: 1000500
+	 
+	 
+
+	 Operações realizadas pelo vetor na ordem crescente organizado por Insertion Sorting: 1998
+
+
+	 Operações realizadas pelo vetor na ordem aleatório organizado por Insertion Sorting: 494338
+
+
+	 Operações realizadas pelo vetor na ordem decrescente organizado por Insertion Sorting: 1000998
