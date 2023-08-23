@@ -3,7 +3,7 @@
 #include "fibonacci.h"
 
 
-int main(int argc, char const *argv[])
+int main(void)
 {
     int n;
     printf("\n\t Quantos números da sequência quer?\n\t")/

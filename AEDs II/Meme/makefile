@@ -54,4 +54,4 @@ clean:
 	@ rmdir objects
 
 .PHONY: all clean
-# Se existir algum arquivo com o mesmonome que uma tag, como clean.c ou all.c, ele ignora
+# Se existir algum arquivo com o mesmo nome que uma tag, como clean.c ou all.c, ele ignora
