@@ -33,21 +33,24 @@ void buscarCabeca(no *cabeca, int x, no **pont, no **prev)
     }
 }
 
-void buscarCauda(no *cauda, int x, no **pont)
+void buscarCauda(no *cauda, int x, no **pont, no **prev)
 {
     *pont = NULL;
+    *prev = cauda;
     no *ptr = cauda->ant;
 
     while (ptr->ant != NULL)
     {
         if (ptr->chave > x)
         {
+            *prev = ptr;
             ptr = ptr->ant;
         }
         else
         {
             if (ptr->chave == x)
             {
+
                 *pont = ptr;
             }
             return;
@@ -59,7 +62,6 @@ no *inserirLista(no *cabeca, no *novoNo)
 {
     no *pont, *prev;
     buscarCabeca(cabeca, novoNo->chave, &pont, &prev);
-    // printf("\n BUSCA FEITA");
     if (pont == NULL)
     {
         if (cabeca->prox->prox == NULL)
@@ -152,7 +154,12 @@ void desalocarLista(no *cabeca)
     no *tmp = cabeca->prox;
     while (cabeca != NULL)
     {
-        cabeca->prox = cabeca->prox->prox;
+        free(cabeca);
+        cabeca = tmp;
+        if (tmp->prox != NULL)
+        {
+            tmp = tmp->prox;
+        }
     }
 }
 
@@ -189,7 +196,6 @@ int main()
         {
             // inserir
             no *novo_no = alocar_no();
-            printf("nó criado\n");
             printf("chave: %d\n", novo_no->chave);
             printf("valor: %d\n", novo_no->valor);
             inserirLista(cabeca, novo_no);
