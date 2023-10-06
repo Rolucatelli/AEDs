@@ -8,6 +8,38 @@ typedef struct no_
     struct no_ *prox;
 } no;
 
+/*
+    f: quem tá a mais tempo na fila
+    r: quem acabou de chegar na fila
+*/
+void inserir(no **f, no **r, no *novoNo)
+{
+    if (*r == NULL)
+    {
+        *f = *r = novoNo;
+    }
+    else
+    {
+        (*r)->prox = novoNo;
+        *r = novoNo;
+    }
+}
+
+no *remover(no **f, no **r)
+{
+    no *retorno = NULL;
+    if (*f != NULL)
+    {
+        retorno = *f;
+        *f = retorno->prox;
+        if (*f == NULL)
+        {
+            *r = *f;
+        }
+    }
+    return retorno;
+}
+
 no *alocarNo()
 {
     no *retorno = malloc(sizeof(no));
@@ -26,25 +58,11 @@ void ler_menu(int *resposta)
     printf("0 - sair\n");
     printf("1 - inserir\n");
     printf("2 - remover\n");
-    printf("3 - imprimir crescente\n");
-    printf("4 - imprimir decrescente\n");
+    printf("3 - imprimir\n");
     scanf("%d", resposta);
     printf("-----------------------\n\n");
 }
 
-void desalocar_lista(no *ptlista)
-{
-    no *proximo = ptlista->prox;
-    while (proximo != ptlista)
-    {
-        no *temp = proximo->prox;
-        free(proximo);
-        proximo = temp;
-    }
-    free(ptlista);
-}
-
-// Fila
 void imprimir(no *inicio)
 {
     if (inicio == NULL)
@@ -65,40 +83,55 @@ void imprimir(no *inicio)
     }
 }
 
-void main(int argc, char **argv)
+int main()
 {
-
+    no *f = NULL, *r = NULL;
     int resposta = 1;
-    while (resposta != 0)
+    while (resposta)
     {
         ler_menu(&resposta);
+        if (resposta == 1)
+        {
+            no *novoNo = alocarNo();
+            inserir(&f, &r, novoNo);
+        }
+        if (resposta == 2)
+        {
+            no * temp = remover(&f, &r);
+            if (temp != NULL)
+            {
+                printf("\n Chave removida: %d\n", temp->chave);
+                printf("\n Valor removido: %d\n", temp->valor);
+            }
+            else
+            {
+                printf("\n **fila vazia**");
+            }
+            
+        }
+        if (resposta == 3)
+        {
+            imprimir(f);
+        }
 
-        if (resposta == 0)
-        {
-            // sair
-            return;
-        }
-        else if (resposta == 1)
-        {
-            // inserir
-
-            no *novo_no = alocarNo();
-        }
-        else if (resposta == 2)
-        {
-            // remover
-            int x;
-            printf("\n\t Digite a chave: ");
-            scanf("%d", &x);
-        }
-        else if (resposta == 3)
-        {
-            // imprimir ordem crescente
-            // imprimir(ptlista);
-        }
-        else
-        {
-            printf("Opção inválida\n");
-        }
+        // switch (resposta)
+        // {
+        // case 1:
+        //     /* inserir */
+        //     break;
+        // case 2:
+        //     /* remover */
+        //     break;
+        // case 3:
+        //     /* imprimir */
+        //     break;
+        // case 4:
+        //     /* buscar */
+        //     break;
+        // default:
+        //     break;
+        // }
     }
+
+    return 0;
 }
