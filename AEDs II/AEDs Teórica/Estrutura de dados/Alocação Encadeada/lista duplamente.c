@@ -200,7 +200,7 @@ void imprimir_decrescente(no *ptlista)
 //     printf("\tNULL\n");
 // }
 
-void main(int argc, char **argv)
+void main()
 {
     no *ptlista;
     inicia_lista(&ptlista);

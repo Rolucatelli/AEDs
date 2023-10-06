@@ -15,13 +15,52 @@ int busca(no *L, int n, int x)
     {
         i++;
     }
-    if (i == n)
+    if (i != n)
     {
-        return -1;
+        return i;
     }
-    return i;
+    return -1;
 }
 
+int buscaBin(no *L, int n, int x)
+{
+    int inf = 0, sup = n, meio;
+    while (inf < n)
+    {
+        meio = (inf + sup) / 2;
+        if (L[meio].chave == x)
+        {
+            return meio;
+        }
+        else
+        {
+            if (L[meio].chave < x)
+            {
+                inf = meio + 1;
+            }
+            else
+            {
+                sup = meio - 1;
+            }
+        }
+    }
+    return -1;
+}
+
+int inserir(no *L, int n, int m, no x)
+{
+    if (n < m)
+    {
+        if (busca(L, n, x.chave) == -1)
+        {
+            L[n] = x;
+            n++;
+            return n - 1;
+        }
+        return -1;
+    }
+    return -2;
+}
 
 no *alocarNo()
 {
