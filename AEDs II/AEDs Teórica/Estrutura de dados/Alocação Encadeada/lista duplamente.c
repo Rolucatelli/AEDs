@@ -5,128 +5,65 @@ typedef struct no_
 {
     int chave;
     int valor;
-    struct no_ *prox;
     struct no_ *ant;
+    struct no_ *prox;
 } no;
 
-void buscarCabeca(no *cabeca, no *cauda, int x, no **pont)
+no *buscar(no *ptlista, int x)
 {
-    *pont = NULL;
-    no *ptr = cabeca->prox;
-    printf("\n 16");
-    while (ptr->prox != NULL)
+    no *ultimo = ptlista->ant;
+
+    if (ultimo != ptlista && ultimo->chave >= x)
     {
-        printf("\n 19");
-        if (ptr->chave < x)
+        while (ptlista->prox->chave < x && ptlista->prox != ultimo->prox)
         {
-            printf("\n 22");
-            ptr = ptr->prox;
+            ptlista = ptlista->prox;
         }
-        else
-        {
-            if (ptr->chave == x)
-            {
-                printf("\n 29");
-                *pont = ptr;
-            }
-            printf("\n 32");
-            break;
-        }
+        return ptlista->prox;        
     }
+    
+    return ptlista;
 }
 
-void buscarCauda(no *cauda, int x, no **pont)
+no *inserir(no *ptlista, no *novo_no)
 {
-    *pont = NULL;
-    no *ptr = cauda->prox;
+    no *pont = buscar(ptlista, novo_no->chave);
 
-    while (ptr != NULL)
+    if (pont->chave != novo_no->chave)
     {
-        if (ptr->chave > x)
-        {
-
-            ptr = ptr->ant;
-        }
-        else
-        {
-            if (ptr->chave == x)
-            {
-                *pont = ptr;
-            }
-            ptr = NULL;
-        }
+        novo_no->prox = pont;
+        novo_no->ant = pont->ant;
+        pont->ant->prox = novo_no;
+        pont->ant = novo_no;
+        return NULL;
     }
-}
-
-no *inserirLista(no *cabeca, no *cauda, no *novoNo)
-{
-    no *pont;
-    buscarCabeca(cabeca, cauda, novoNo->chave, &pont);
-    printf("\n BUSCA FEITA");
-    if (pont == NULL)
-    {
-        if (cabeca->prox->prox == NULL)
-        {
-            novoNo->prox = cabeca->prox->prox;
-            cabeca->prox->prox->ant = novoNo;
-            cabeca->prox->prox = novoNo;
-            novoNo->ant = cabeca->prox;
-        }
-        else
-        {
-
-            novoNo->prox = pont->prox;
-            pont->prox->ant = novoNo;
-            pont->prox = novoNo;
-            novoNo->ant = pont;
-        }
-    }
+    
     return pont;
 }
 
-no *removerLista(no *cabeca, no *cauda, int x)
+no *remover(no *ptlista, int x)
 {
-    no *pont;
+    no *pont = buscar(ptlista, x);
+
+    if (pont->chave == x)
+    {
+        pont->ant->prox = pont->prox;
+        pont->prox->ant = pont->ant;
+        return pont;
+    }
+    return NULL;
+}
+
+no *alocarNo()
+{
     no *retorno = malloc(sizeof(no));
-    buscarCabeca(cabeca, cauda, x, &pont);
-    if (pont != NULL)
-    {
-        retorno = pont;
-        pont->ant = pont->prox;
-        pont->prox = pont->ant;
-    }
+    printf("Informe a chave: ");
+    scanf("%d", &retorno->chave);
+    printf("Informe o valor: ");
+    scanf("%d", &(*retorno).valor);
+    retorno->prox = NULL;
+    retorno->ant = NULL;
     return retorno;
-}
-
-no *alocar_no()
-{
-    no *novo_no = malloc(sizeof(no));
-    printf("informe a chave: ");
-    scanf("%d", &novo_no->chave);
-    printf("informe o valor: ");
-    scanf("%d", &novo_no->valor);
-    printf("\n");
-    novo_no->prox = NULL;
-    novo_no->ant = NULL;
-    return novo_no;
-}
-
-void imprimir(no *cabeca)
-{
-    if (cabeca->ant == NULL && cabeca->prox->prox == NULL)
-    {
-        printf("Lista vazia");
-        return;
-    }
-
-    printf("cabeca --> ");
-    while (cabeca->prox != NULL)
-    {
-        printf("%d:%d", cabeca->prox->chave, cabeca->prox->valor);
-        cabeca = cabeca->prox;
-        if (cabeca->prox != NULL)
-            printf(" -> ");
-    }
 }
 
 void ler_menu(int *resposta)
@@ -136,65 +73,184 @@ void ler_menu(int *resposta)
     printf("0 - sair\n");
     printf("1 - inserir\n");
     printf("2 - remover\n");
-    printf("3 - imprimir\n");
+    printf("3 - imprimir crescente\n");
+    printf("4 - imprimir decrescente\n");
     scanf("%d", resposta);
     printf("-----------------------\n\n");
 }
 
-int main()
+void desalocar_lista(no *ptlista)
 {
-    no *cabeca = malloc(sizeof(no)), *cauda = malloc(sizeof(no));
+    no *proximo = ptlista->prox;
+    while (proximo != ptlista)
+    {
+        no *temp = proximo->prox;
+        free(proximo);
+        proximo = temp;
+    }
+    free(ptlista);
+}
 
-    cabeca->prox = cauda;
-    cauda->prox = cabeca;
+void inicia_lista(no **ptlista)
+{
+    *ptlista = malloc(sizeof(no));
+
+    (*(*ptlista)).ant = (*ptlista);
+    (*(*ptlista)).prox = (*ptlista);
+}
+
+void imprimir_crescente(no *ptlista)
+{
+
+
+    no *proximo = ptlista->prox;
+    if (proximo == ptlista)
+    {
+        printf("\n<lista vazia>");
+    }
+    else
+    {
+        while (proximo != ptlista)
+        {
+            printf("%d:%d", proximo->chave, proximo->valor);
+            proximo = proximo->prox;
+            if (proximo != ptlista)
+                printf(" <-> ");
+        }
+    }
+    printf("\n");
+
+}
+
+void imprimir_decrescente(no *ptlista)
+{
+    no *anterior = ptlista->ant;
+    if (anterior == ptlista)
+    {
+        printf("<lista vazia!>");
+    }
+    else
+    {
+        while (anterior != ptlista)
+        {
+            printf("%d:%d", anterior->chave, anterior->valor);
+            anterior = anterior->ant;
+            if (anterior != ptlista)
+                printf(" <-> ");
+        }
+    }
+    printf("\n");
+
+}
+
+// // Fila
+// void imprimir(no * inicio){
+//     if(inicio == NULL){
+//         printf("fila vazia");
+//         return;
+//     }
+
+//     printf("inicio --> ");
+//     while(inicio != NULL){
+//         printf("%d:%d", inicio->chave, inicio->valor);
+//         inicio = inicio->prox;
+//         if(inicio != NULL)
+//             printf(" -> ");
+//         else
+//             printf(" <-- fim");
+//     }
+// }
+
+// // Lista
+// void imprimir(no *ptlista)
+// {
+//     if (ptlista->prox == NULL)
+//     {
+//         printf("<lista vazia!>");
+//         return;
+//     }
+
+//     ptlista = ptlista->prox;
+//     while (ptlista != NULL)
+//     {
+//         printf("%d:%d", inicio->chave, inicio->valor);
+//         ptlista = ptlista->prox;
+//         printf(" -> ");
+//         if (ptlista == NULL)
+//             printf("NULL");
+//     }
+// }
+
+// // Pilha
+// void imprimir(no *topo)
+// {
+//     if (topo == NULL)
+//     {
+//         printf("pilha vazia");
+//         return;
+//     }
+
+//     printf("topo --> \n");
+//     while (topo != NULL)
+//     {
+//         printf("\t%d:%d", topo->chave, topo->valor);
+//         topo = topo->prox;
+//         printf("\n | \n");
+//     }
+//     printf("\tNULL\n");
+// }
+
+void main()
+{
+    no *ptlista;
+    inicia_lista(&ptlista);
+
     int resposta = 1;
-
     while (resposta != 0)
     {
         ler_menu(&resposta);
+
         if (resposta == 0)
         {
             // sair
-            // desalocar
+            desalocar_lista(ptlista);
+            return;
         }
-        if (resposta == 1)
+        else if (resposta == 1)
         {
             // inserir
-            no *novo_no = alocar_no();
-            printf("nó criado\n");
-            printf("chave: %d\n", novo_no->chave);
-            printf("valor: %d\n", novo_no->valor);
-            inserirLista(cabeca, cauda, novo_no);
+
+            no *novo_no = alocarNo();
+            if (inserir(ptlista, novo_no) != NULL)
+            {
+                free(novo_no);
+            }
         }
         else if (resposta == 2)
         {
             // remover
             int x;
-            printf("\n Que chave deseja remover? ");
+            printf("\n\t Digite a chave: ");
             scanf("%d", &x);
-            no *no_removido = removerLista(cabeca, cauda, x);
+            no *no_removido = remover(ptlista, x);
             if (no_removido != NULL)
             {
-                printf("nó removido\n");
-                printf("chave: %d\n", no_removido->chave);
-                printf("valor: %d\n", no_removido->valor);
                 free(no_removido);
-            }
-            else
-            {
-                printf("lista vazia");
             }
         }
         else if (resposta == 3)
         {
-            // imprimir
-            imprimir(cabeca);
+            // imprimir ordem crescente
+            imprimir_crescente(ptlista);
+        }
+        else if (resposta == 4)
+        {
+            // imprimir ordem decrescente
+            imprimir_decrescente(ptlista);
         }
         else
         {
-            printf("Opcao invalida\n");
+            printf("Opção inválida\n");
         }
     }
-
-    return 0;
 }
