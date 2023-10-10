@@ -8,6 +8,58 @@ typedef struct no_
     struct no_ *prox;
 } no;
 
+void buscar(no *ptlista, int x, no **ant, no **pont)
+{
+    *pont = NULL;
+    *ant = ptlista;
+    no *ptr = ptlista->prox;
+
+    while (ptr != NULL)
+    {
+        if (ptr->chave < x)
+        {
+            *ant = ptr;
+            ptr = ptr->prox;
+        }
+        else
+        {
+            if (ptr->chave == x)
+            {
+                *pont = ptr;
+            }
+            ptr = NULL; // break;
+        }
+    }
+}
+
+no *inserir(no *ptlista, no *novo_no)
+{
+    no *ant, *pont;
+    buscar(ptlista, novo_no->chave, &ant, &pont);
+    if (pont == NULL)
+    {
+        novo_no->prox = ant->prox;
+        ant->prox = novo_no;
+        return NULL;
+    }
+    return pont;
+}
+
+no *remover(no *ptlista, int x)
+{
+    no *ant, *pont;
+    buscar(ptlista, x, &ant, &pont);
+    if (pont != NULL)
+    {
+        ant->prox = pont->prox;
+        return pont;
+    }
+    else
+    {
+        return NULL;
+    }
+}
+
 no *alocarNo()
 {
     no *retorno = malloc(sizeof(no));
@@ -26,25 +78,12 @@ void ler_menu(int *resposta)
     printf("0 - sair\n");
     printf("1 - inserir\n");
     printf("2 - remover\n");
-    printf("3 - imprimir crescente\n");
-    printf("4 - imprimir decrescente\n");
+    printf("3 - imprimir\n");
+    printf("4 - buscar\n");
     scanf("%d", resposta);
     printf("-----------------------\n\n");
 }
 
-void desalocar_lista(no *ptlista)
-{
-    no *proximo = ptlista->prox;
-    while (proximo != ptlista)
-    {
-        no *temp = proximo->prox;
-        free(proximo);
-        proximo = temp;
-    }
-    free(ptlista);
-}
-
-// Lista
 void imprimir(no *ptlista)
 {
     if (ptlista->prox == NULL)
@@ -64,40 +103,74 @@ void imprimir(no *ptlista)
     }
 }
 
-void main(int argc, char **argv)
+int main()
 {
-
+    no *ptlista = malloc(sizeof(no));
+    ptlista->prox = NULL;
     int resposta = 1;
-    while (resposta != 0)
+    while (resposta)
     {
         ler_menu(&resposta);
-
-        if (resposta == 0)
+        if (resposta == 1)
         {
-            // sair
-            return;
+            no *novoNo = alocarNo();
+            inserir(ptlista, novoNo);
         }
-        else if (resposta == 1)
+        if (resposta == 2)
         {
-            // inserir
-
-            no *novo_no = alocarNo();
-        }
-        else if (resposta == 2)
-        {
-            // remover
             int x;
-            printf("\n\t Digite a chave: ");
+            printf("\n Digite a chave que quer remover: ");
             scanf("%d", &x);
+            no *temp = remover(ptlista, x);
+            if (temp != NULL)
+            {
+                printf("\n Chave removida: %d\n", temp->chave);
+                printf("\n Valor removido: %d\n", temp->valor);
+            }
+            else
+            {
+                printf("\n **Lista vazia ou valor não encontrado**");
+            }
         }
-        else if (resposta == 3)
+        if (resposta == 3)
         {
-            // imprimir ordem crescente
-            // imprimir(ptlista);
+            imprimir(ptlista);
         }
-        else
+        if (resposta == 4)
         {
-            printf("Opção inválida\n");
+            int x;
+            printf("\n Digite a chave que quer buscar: ");
+            scanf("%d", &x);
+            no *ant, *pont;
+            buscar(ptlista, x, &ant, &pont);
+            if (pont != NULL)
+            {
+                printf("\n Valor encontrado: %d", pont->valor);
+            }
+            else
+            {
+                printf("\n Valor não encontrado!");
+            }
         }
+
+        // switch (resposta)
+        // {
+        // case 1:
+        //     /* inserir */
+        //     break;
+        // case 2:
+        //     /* remover */
+        //     break;
+        // case 3:
+        //     /* imprimir */
+        //     break;
+        // case 4:
+        //     /* buscar */
+        //     break;
+        // default:
+        //     break;
+        // }
     }
+
+    return 0;
 }

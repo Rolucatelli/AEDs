@@ -7,69 +7,84 @@ typedef struct no_
     int valor;
 } no;
 
-int busca(no *L, int n, int x)
+int busca(no l[], int x, int m)
 {
-    L[n].chave = x;
+    l[m].chave = x;
     int i = 0;
-    while (L[i].chave != x)
+    while (l[i].chave != x)
     {
         i++;
     }
-    if (i != n)
+    if (i == m)
     {
-        return i;
+        return -1;
     }
-    return -1;
+    return i;
 }
 
-int buscaBin(no *L, int n, int x)
+int buscaBin(no l[], int x, int m)
 {
-    int inf = 0, sup = n, meio;
-    while (inf < n)
+
+    int inf = 0, sup = m - 1, meio = (m - 1) / 2;
+    while (inf <= sup)
     {
-        meio = (inf + sup) / 2;
-        if (L[meio].chave == x)
+        if (l[meio].chave < x)
         {
-            return meio;
+            sup = meio - 1;
+            meio = (inf + sup) / 2;
         }
         else
         {
-            if (L[meio].chave < x)
+            if (l[meio].chave == x)
             {
-                inf = meio + 1;
+                return meio;
             }
             else
             {
-                sup = meio - 1;
+                inf = meio + 1;
+                meio = (inf + sup) / 2;
             }
         }
     }
     return -1;
 }
 
-int inserir(no *L, int n, int m, no x)
+int insereLista(no l[], int *n, int m, no x)
 {
-    if (n < m)
+    if (*n < (m - 1))
     {
-        if (busca(L, n, x.chave) == -1)
-        {
-            L[n] = x;
-            n++;
-            return n - 1;
-        }
-        return -1;
+        (*n)++;
+        l[*n] = x;
+        return 1;
     }
-    return -2;
+    return -1;
 }
 
-no *alocarNo()
+no *removeLista(no l[], int *n, int x, int m)
 {
-    no *retorno = malloc(sizeof(no));
-    printf("Informe a chave: ");
-    scanf("%d", &retorno->chave);
-    printf("Informe o valor: ");
-    scanf("%d", &(*retorno).valor);
+    no *retorno = NULL;
+    int temp = busca(l, x, m);
+    if (temp >= 0)
+    {
+        retorno = malloc(sizeof(no *));
+        *retorno = l[temp];
+        for (int i = temp; i < *n; i++)
+        {
+            l[i] = l[i + 1];
+        }
+        (*n)--;
+    }
     return retorno;
+}
+
+void imprimeLista(no l[], int n)
+{
+    for (int i = 0; i <= n; i++)
+    {
+        printf("\n Chave: %d", l[i].chave);
+        printf("\n Valor: %d\n", l[i].valor);
+        printf("===============================");
+    }
 }
 
 void ler_menu(int *resposta)
@@ -79,46 +94,81 @@ void ler_menu(int *resposta)
     printf("0 - sair\n");
     printf("1 - inserir\n");
     printf("2 - remover\n");
-    printf("3 - imprimir crescente\n");
-    printf("4 - imprimir decrescente\n");
+    printf("3 - imprimir\n");
+    printf("4 - buscar\n");
     scanf("%d", resposta);
     printf("-----------------------\n\n");
 }
 
-void main(int argc, char **argv)
+int main()
 {
-
+    int m;
+    printf("Digite o tamanho da lista: ");
+    scanf("%d", &m);
+    no lista[m + 1];
+    // n é o indice do ultimo elemento
+    int n = -1;
     int resposta = 1;
-    while (resposta != 0)
+
+    while (resposta)
     {
         ler_menu(&resposta);
 
-        if (resposta == 0)
+        if (resposta == 1)
         {
-            // sair
-            return;
+            no x;
+            printf("\n Digite a chave que quer inserir: ");
+            scanf("%d", &x.chave);
+            printf("\n Digite o valor que quer inserir: ");
+            scanf("%d", &x.valor);
+            if (insereLista(lista, &n, m, x) == 1)
+            {
+                printf("\n Elemento inserido na posição %d", n);
+            }
+            else
+            {
+                printf("\n Lista cheia!");
+            }
         }
-        else if (resposta == 1)
+        if (resposta == 2)
         {
-            // inserir
-
-            no *novo_no = alocarNo();
-        }
-        else if (resposta == 2)
-        {
-            // remover
             int x;
-            printf("\n\t Digite a chave: ");
+            printf("Digite a chave que quer remover: ");
             scanf("%d", &x);
+            no *temp = removeLista(lista, &n, x, m);
+            if (temp != NULL)
+            {
+                printf("\n Chave removida: %d", temp->chave);
+                printf("\n Valor removido: %d", temp->valor);
+                printf("\n Posição na lista: %d", n);
+            }
         }
-        else if (resposta == 3)
+        if (resposta == 3)
         {
-            // imprimir ordem crescente
-            // imprimir(ptlista);
+            imprimeLista(lista, n);
+        }
+        if (resposta == 4 && n >= 0)
+        {
+            int x;
+            printf("Digite a chave que quer buscar: ");
+            scanf("%d", &x);
+            int temp = buscaBin(lista, x, m);
+            if (temp == -1)
+            {
+                printf("\n Valor não encontrado!");
+            }
+            else
+            {
+                printf("\n Chave encontrada: %d", lista[temp].chave);
+                printf("\n Valor encontrado: %d", lista[temp].valor);
+                printf("\n Posição na lista: %d", temp);
+            }
         }
         else
         {
-            printf("Opção inválida\n");
+            printf("\n Lista vazia");
         }
     }
+
+    return 0;
 }
