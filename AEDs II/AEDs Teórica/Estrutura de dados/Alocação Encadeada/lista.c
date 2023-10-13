@@ -32,6 +32,25 @@ void buscar(no *ptlista, int x, no **ant, no **pont)
     }
 }
 
+// void busca1(no *ptlista, int x, no **ant, no **pont){
+//     *ant = ptlista;
+//     *pont = NULL;
+
+//     while (*pont == NULL)
+//     {
+//         if ((*ant)->chave == x)
+//         {
+//             *pont = *ant;
+//             break;
+//         }else{
+//             *ant = (*ant)->prox;
+//         }
+        
+//     }
+    
+// }
+
+
 no *inserir(no *ptlista, no *novo_no)
 {
     no *ant, *pont;
