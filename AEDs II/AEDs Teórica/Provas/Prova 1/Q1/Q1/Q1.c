@@ -71,7 +71,7 @@ no *inserir(no *ptlista, no *novo_no)
 {
     no *pont = buscar(ptlista, novo_no->chave);
 
-    if (pont->chave != novo_no->chave)
+    if (pont->chave != novo_no->chave) // if (pont->chave != novo_no->chave || pont == ptlista)
     {
         novo_no->prox = pont->ant->prox;
         novo_no->ant = pont->ant;
@@ -97,7 +97,7 @@ no *remover(no *ptlista, int x)
 {
     no *pont = buscar(ptlista, x);
 
-    if (pont->chave == x)
+    if (pont->chave == x) // if (pont->chave == x && pont != ptlista)
     {
         pont->ant->prox = pont->prox;
         pont->prox->ant = pont->ant;
