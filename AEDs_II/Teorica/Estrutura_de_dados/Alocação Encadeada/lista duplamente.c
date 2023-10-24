@@ -143,62 +143,6 @@ void imprimir_decrescente(no *ptlista)
 
 }
 
-// // Fila
-// void imprimir(no * inicio){
-//     if(inicio == NULL){
-//         printf("fila vazia");
-//         return;
-//     }
-
-//     printf("inicio --> ");
-//     while(inicio != NULL){
-//         printf("%d:%d", inicio->chave, inicio->valor);
-//         inicio = inicio->prox;
-//         if(inicio != NULL)
-//             printf(" -> ");
-//         else
-//             printf(" <-- fim");
-//     }
-// }
-
-// // Lista
-// void imprimir(no *ptlista)
-// {
-//     if (ptlista->prox == NULL)
-//     {
-//         printf("<lista vazia!>");
-//         return;
-//     }
-
-//     ptlista = ptlista->prox;
-//     while (ptlista != NULL)
-//     {
-//         printf("%d:%d", inicio->chave, inicio->valor);
-//         ptlista = ptlista->prox;
-//         printf(" -> ");
-//         if (ptlista == NULL)
-//             printf("NULL");
-//     }
-// }
-
-// // Pilha
-// void imprimir(no *topo)
-// {
-//     if (topo == NULL)
-//     {
-//         printf("pilha vazia");
-//         return;
-//     }
-
-//     printf("topo --> \n");
-//     while (topo != NULL)
-//     {
-//         printf("\t%d:%d", topo->chave, topo->valor);
-//         topo = topo->prox;
-//         printf("\n | \n");
-//     }
-//     printf("\tNULL\n");
-// }
 
 void main()
 {
