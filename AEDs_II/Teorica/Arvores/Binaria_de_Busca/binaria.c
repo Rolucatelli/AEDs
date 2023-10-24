@@ -146,8 +146,7 @@ void ler_menu(int *resposta)
 int main()
 {
     int resposta = 1;
-    printf(" Alocacao do no raiz: \n");
-    no *raiz = alocarNo();
+    no *raiz = NULL;
 
     while (resposta)
     {
