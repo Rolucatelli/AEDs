@@ -8,6 +8,9 @@ typedef struct no_
     struct no_ *dir;
 } no;
 
+/**
+ * ok
+ */
 no *busca(no *raiz, int valor)
 {
     if (raiz == NULL || raiz->valor == valor)
@@ -28,6 +31,9 @@ no *buscaPai(no *raiz, no *n)
         return buscaPai(raiz->dir, n);
 }
 
+/**
+ * ok
+ */
 no *insere(no *raiz, no *n)
 {
     if (raiz == NULL)
@@ -40,6 +46,7 @@ no *insere(no *raiz, no *n)
     return raiz;
 }
 
+/*
 no *removeRaiz(no *raiz)
 {
     if (raiz->esq == NULL)
@@ -56,8 +63,30 @@ no *removeRaiz(no *raiz)
     temp->dir = raiz->dir;
     temp->esq = raiz->esq;
     return temp;
+}*/
+
+no *removeRaiz(no *raiz)
+{
+    if (raiz->esq == NULL)
+        return raiz->dir;
+    if (raiz->dir == NULL)
+        return raiz->esq;
+    no *p = raiz;
+    no *q = raiz->esq;
+    while (q->dir != NULL)
+    {
+        p = q;
+        q = q->dir;
+    }
+    p->dir = q->esq;
+    q->dir = raiz->dir;
+    q->esq = raiz->esq;
+    return q;
 }
 
+/**
+ * ok
+ */
 no *removeNo(no *raiz, int x)
 {
     no *n = busca(raiz, x);
@@ -125,9 +154,9 @@ no *alocarNo()
 void desalocarArvore(no *raiz)
 {
     if (raiz->esq != NULL)
-        desalocarArvore(raiz);
+        desalocarArvore(raiz->esq);
     if (raiz->dir != NULL)
-        desalocarArvore(raiz);
+        desalocarArvore(raiz->dir);
     free(raiz);
 }
 
@@ -146,18 +175,21 @@ void ler_menu(int *resposta)
 int main()
 {
     int resposta = 1;
-    no *raiz = NULL;
+    printf(" Alocacao do no raiz: \n");
+    no *raiz = alocarNo();
 
     while (resposta)
     {
         ler_menu(&resposta);
 
-        switch (resposta)
+        if (resposta == 0)
         {
-        case 0:
+
             desalocarArvore(raiz);
-            break;
-        case 1:
+        }
+        else if (resposta == 1)
+        {
+
             no *novoNo = alocarNo();
             no *b = busca(raiz, novoNo->valor);
             if (b == NULL)
@@ -168,15 +200,17 @@ int main()
             {
                 printf("\n Ja existe no com esse valor!");
             }
-            break;
-        case 2:
+        }
+        else if (resposta == 2)
+        {
+
             int x;
             printf("\n Digite o valor que quer remover: ");
             scanf("%d", &x);
             raiz = removeNo(raiz, x);
-            break;
-        case 3:
-
+        }
+        else if (resposta == 3)
+        {
             int ordem;
             printf("escolha a maneira de imprimir:\n");
             printf("1 - pre-ordem\n");
@@ -202,11 +236,11 @@ int main()
                 printf("Opção inválida\n");
                 break;
             }
-            break;
+        }
+        else
+        {
 
-        default:
             printf("Opção inválida\n");
-            break;
         }
     }
 
