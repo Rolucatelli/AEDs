@@ -262,7 +262,7 @@ int main()
                 no *noRemovido = remover(&topo);
                 if (noRemovido == NULL)
                 {
-                    printf("\n Erro na linha %d: tag de fechamento sem tag de abertura correspondente!", linhaAtual);
+                    printf("\n Erro na linha %d: tag de fechamento sem tag de abertura correspondente!\n", linhaAtual);
                     return 1;
                 }
 
@@ -271,7 +271,7 @@ int main()
 
                 if (stringsDiferentes(tag, tagRemovida))
                 {
-                    printf("\n Erro na linha %d: tag de fechamento sem tag de abertura correspondente!", linhaAtual);
+                    printf("\n Erro na linha %d: tag de fechamento sem tag de abertura correspondente!\n", linhaAtual);
                     return 1;
                 }
 
@@ -282,11 +282,11 @@ int main()
     no *temp = remover(&topo);
     if (temp != NULL)
     {
-        printf("\n Erro na linha %d: a tag <%s> não foi fechada!", linhaAtual, temp->info);
+        printf("\n Erro na linha %d: a tag <%s> não foi fechada!\n", linhaAtual, temp->info);
         return 1;
     }
 
-    printf("\n O arquivo está correto!");
+    printf("\n O arquivo está correto!\n");
     fclose(arquivo);
 
     return 0;
