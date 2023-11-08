@@ -49,25 +49,25 @@ int tamString(string texto){
     return i;
 }
 
-string concatena(string string1, string string2){
-    int tam1 = tamString(string1);
-    int tam2 = tamString(string2);
-    int tam3 = tam1 + tam2;
-    string string3 = malloc(tam3 * sizeof(char));
+string concatena(string a, string b){
+    int x = tamString(a);
+    int y = tamString(b);
+    int z = x + y;
+    string c = malloc(z * sizeof(char));
     int i = 0;
-    while (i < tam1)
+    while (i < x)
     {
-        string3[i] = string1[i];
+        c[i] = a[i];
         i++;
     }
     int j = 0;
-    while (j < tam2)
+    while (j < y)
     {
-        string3[i] = string2[j];
+        c[i] = b[j];
         i++;
         j++;
     }
-    return string3;
+    return c;
 }
 
 string removePrimeiroChar(string string1){
@@ -125,7 +125,6 @@ int main()
     
     
     
-
 
 
 
