@@ -71,6 +71,8 @@ Node *RSE(Node *raiz)
     Node *temp = raiz->dir;
     raiz->dir = temp->esq;
     temp->esq = raiz;
+    raiz->fb = 0;
+    temp->fb++;
     return temp;
 }
 
@@ -94,6 +96,25 @@ Node *RDE(Node *raiz)
     return RSE(raiz);
 }
 
+int calcularFB(Node *no){
+    int altEsq = 0, altDir = 0;
+    while (no->esq != NULL)
+    {
+        altEsq++;
+        no->esq = no->esq->esq;
+    }
+    
+    // Ta ERRADO!
+
+    while (no->dir != NULL)
+    {
+        altDir++;
+        no->dir = no->dir->dir;
+    }
+    
+}
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 Node *alocarNo()
@@ -105,6 +126,7 @@ Node *alocarNo()
     novoNo->info = n;
     novoNo->dir = NULL;
     novoNo->esq = NULL;
+    novoNo->fb = 0;
     return novoNo;
 }
 
