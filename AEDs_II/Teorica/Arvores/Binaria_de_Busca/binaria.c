@@ -23,7 +23,9 @@ no *busca(no *raiz, int valor)
 
 no *buscaPai(no *raiz, no *n)
 {
-    if (raiz == NULL || raiz->esq == n || raiz->dir == n)
+    if (raiz == NULL || raiz == n)
+        return NULL;
+    if (raiz->esq == n || raiz->dir == n)
         return raiz;
     if (n->valor < raiz->valor)
         return buscaPai(raiz->esq, n);
@@ -68,9 +70,17 @@ no *removeRaiz(no *raiz)
 no *removeRaiz(no *raiz)
 {
     if (raiz->esq == NULL)
-        return raiz->dir;
+    {
+        no *tmp = raiz->dir;
+        free(raiz);
+        return (tmp);
+    }
     if (raiz->dir == NULL)
-        return raiz->esq;
+    {
+        no *tmp = raiz->esq;
+        free(raiz);
+        return (tmp);
+    }
     no *p = raiz;
     no *q = raiz->esq;
     while (q->dir != NULL)
@@ -78,9 +88,13 @@ no *removeRaiz(no *raiz)
         p = q;
         q = q->dir;
     }
-    p->dir = q->esq;
+    if (p != raiz)
+    {
+        p->dir = q->esq;
+        q->esq = raiz->esq;
+    }
     q->dir = raiz->dir;
-    q->esq = raiz->esq;
+    free(raiz);
     return q;
 }
 
@@ -114,29 +128,38 @@ no *removeNo(no *raiz, int x)
 
 void imprimirPreOrdem(no *raiz)
 {
-    printf("%d => ", raiz->valor);
-    if (raiz->esq != NULL)
-        imprimirPreOrdem(raiz->esq);
-    if (raiz->dir != NULL)
-        imprimirPreOrdem(raiz->dir);
+    if (raiz != NULL)
+    {
+        printf("%d => ", raiz->valor);
+        if (raiz->esq != NULL)
+            imprimirPreOrdem(raiz->esq);
+        if (raiz->dir != NULL)
+            imprimirPreOrdem(raiz->dir);
+    }
 }
 
 void imprimirEmOrdem(no *raiz)
 {
-    if (raiz->esq != NULL)
-        imprimirEmOrdem(raiz->esq);
-    printf("%d => ", raiz->valor);
-    if (raiz->dir != NULL)
-        imprimirEmOrdem(raiz->dir);
+    if (raiz != NULL)
+    {
+        if (raiz->esq != NULL)
+            imprimirEmOrdem(raiz->esq);
+        printf("%d => ", raiz->valor);
+        if (raiz->dir != NULL)
+            imprimirEmOrdem(raiz->dir);
+    }
 }
 
 void imprimirPosOrdem(no *raiz)
 {
-    if (raiz->esq != NULL)
-        imprimirPosOrdem(raiz->esq);
-    if (raiz->dir != NULL)
-        imprimirPosOrdem(raiz->dir);
-    printf("%d => ", raiz->valor);
+    if (raiz != NULL)
+    {
+        if (raiz->esq != NULL)
+            imprimirPosOrdem(raiz->esq);
+        if (raiz->dir != NULL)
+            imprimirPosOrdem(raiz->dir);
+        printf("%d => ", raiz->valor);
+    }
 }
 
 no *alocarNo()
@@ -153,11 +176,14 @@ no *alocarNo()
 
 void desalocarArvore(no *raiz)
 {
-    if (raiz->esq != NULL)
-        desalocarArvore(raiz->esq);
-    if (raiz->dir != NULL)
-        desalocarArvore(raiz->dir);
-    free(raiz);
+    if (raiz != NULL)
+    {
+        if (raiz->esq != NULL)
+            desalocarArvore(raiz->esq);
+        if (raiz->dir != NULL)
+            desalocarArvore(raiz->dir);
+        free(raiz);
+    }
 }
 
 void ler_menu(int *resposta)
@@ -175,8 +201,7 @@ void ler_menu(int *resposta)
 int main()
 {
     int resposta = 1;
-    printf(" Alocacao do no raiz: \n");
-    no *raiz = alocarNo();
+    no *raiz = NULL;
 
     while (resposta)
     {
@@ -191,8 +216,7 @@ int main()
         {
 
             no *novoNo = alocarNo();
-            no *b = busca(raiz, novoNo->valor);
-            if (b == NULL)
+            if (busca(raiz, novoNo->valor) == NULL)
             {
                 raiz = insere(raiz, novoNo);
             }
