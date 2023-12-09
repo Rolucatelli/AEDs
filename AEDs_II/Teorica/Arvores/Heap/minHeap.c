@@ -20,15 +20,17 @@ void swap(int *i, int *j){
     *j = temp;
 }
 
-int inserir(int chave, int *heapSize, int arvore[]){
+void inserir(int chave, int *heapSize, int arvore[]){
 
     if (CAPACITY == *heapSize)
     {
-        return -1;
+        printf("\n Sua árvore está cheia");
+        return;
     }
     
+    int i = (*heapSize);
     (*heapSize)++;
-    int i = heapSize -1;
+    
     arvore[i] = chave;
 
     while (i != 0 && arvore[pai(i)] > arvore[i])
@@ -37,6 +39,7 @@ int inserir(int chave, int *heapSize, int arvore[]){
         i = pai(i);
     }
     
+    return;
 }
 
 void ler_menu(int *resposta)
@@ -77,7 +80,12 @@ int main()
         }
         else if (resposta == 3)
         {
-            //imprimir
+            printf("\n Árvore : ");
+            for (int i = 0; i < heapSize; i++)
+            {
+                printf("%d => ", arvore[i]);
+            }
+                printf(" NULL ");
         }
         else
         {

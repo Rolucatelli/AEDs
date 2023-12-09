@@ -208,7 +208,7 @@ void le_opcao(int *resposta)
 
 int main()
 {
-    noArvore *raiz;
+    noArvore *raiz = NULL;
 
     int resposta = 1;
 
