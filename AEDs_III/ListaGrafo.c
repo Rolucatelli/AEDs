@@ -95,6 +95,7 @@ void main()
         {
         case 0:
             // Sair
+            printf("Saindo...\n");
             break;
         case 1:
             // Inserir
